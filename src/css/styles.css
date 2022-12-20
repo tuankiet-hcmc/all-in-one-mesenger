@@ -1,0 +1,87 @@
+/* styles.css */
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+/* Add styles here to customize the appearance of your app */
+
+/* As the tab needs to be in the border of the view, remove margin of the body tag */
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
+.etabs {
+  width: calc(100vw - 78px);
+}
+
+.btn {
+  border: none;
+  background: #e7eaed;
+  color: #696a6c;
+  cursor: pointer;
+}
+
+/* Darker background on mouse-over */
+.btn:hover > i {
+  color: #000000;
+}
+
+.btn-setting {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  width: 40px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+}
+
+/* The Modal (background) */
+.modal iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 5px;
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  border: 1px solid #888;
+  border-radius: 5px;
+  width: 600px;
+  height: 600px;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}

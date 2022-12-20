@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self' https://fonts.googleapis.com; script-src 'self'; style-src 'self' 'unsafe-inline' *; img-src 'self' data: https:; font-src *"
+    />
+    <link href="./src/css/styles.css" rel="stylesheet" />
+    <title>All In One Messenger</title>
+  </head>
+  <body>
+    <tab-group>
+      <style>
+        .nav {
+          height: 40px;
+          padding-left: 78px;
+          -webkit-user-select: none;
+          -webkit-app-region: drag;
+        }
+      </style>
+    </tab-group>
+    <button id="settingBtn" class="btn btn-setting">
+      <i class="material-icons settings-icon">settings</i>
+    </button>
+    <!-- The Setting Modal -->
+    <div id="settingModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <iframe src="./src/page/setting/index.html"></iframe>
+      </div>
+    </div>
+    <!-- You can also require other files to run in this process -->
+    <script src="node_modules/electron-tabs/dist/electron-tabs.js"></script>
+    <script src="./src/renderer.js"></script>
+  </body>
+</html>
