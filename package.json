@@ -28,7 +28,7 @@
     "electron-modal-window": "^1.0.0",
     "electron-store": "^8.1.0",
     "electron-tabs": "^1.0.1",
-    "jquery": "^3.6.2",
+    "jquery": "^3.6.3",
     "node-notifier": "^10.0.1",
     "open": "^8.4.0"
   }
