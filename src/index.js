@@ -127,37 +127,39 @@ ipcMain.on("addNewTab", (event, title, url, partition) => {
   session
     .fromPartition(partition)
     .setPermissionRequestHandler((webContents, permission, callback) => {
-      const parsedUrl = new URL(webContents.getURL());
-      const allowPermissions = ['camera', 'microphone'];
+      // const parsedUrl = new URL(webContents.getURL());
+      // const allowPermissions = ['camera', 'microphone'];
 
-      if (allowPermissions.includes(permission)) {
-        // Approves the permissions request
-        callback(true);
-      }
+      // if (allowPermissions.includes(permission)) {
+      //   // Approves the permissions request
+      //   callback(true);
+      // }
 
-      // Verify URL
-      if (parsedUrl.protocol !== "https:") {
-        // Denies the permissions request
-        return callback(false);
-      }
+      // // Verify URL
+      // if (parsedUrl.protocol !== "https:") {
+      //   // Denies the permissions request
+      //   return callback(false);
+      // }
+      callback(true);
     });
 
     session
     .fromPartition(partition)
     .setPermissionCheckHandler((webContents, permission, callback) => {
-      const parsedUrl = new URL(webContents.getURL());
-      const allowPermissions = ['camera', 'microphone'];
+      // const parsedUrl = new URL(webContents.getURL());
+      // const allowPermissions = ['camera', 'microphone'];
 
-      if (allowPermissions.includes(permission)) {
-        // Approves the permissions request
-        callback(true);
-      }
+      // if (allowPermissions.includes(permission)) {
+      //   // Approves the permissions request
+      //   callback(true);
+      // }
 
-      // Verify URL
-      if (parsedUrl.protocol !== "https:") {
-        // Denies the permissions request
-        return callback(false);
-      }
+      // // Verify URL
+      // if (parsedUrl.protocol !== "https:") {
+      //   // Denies the permissions request
+      //   return callback(false);
+      // }
+      callback(true);
     });
 });
 
