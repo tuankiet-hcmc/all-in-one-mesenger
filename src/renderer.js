@@ -6,13 +6,15 @@ const addTab = (id, title, url, partition) => {
     webviewAttributes: {
       id: id,
       partition: partition,
-      allowpopups: true
+      allowpopups: true,
+      webpreferences: "nativeWindowOpen=true"
     },
     closable: true,
     active: true
   });
 
   let mediaTimeStart = 0;
+
   tab.webview.addEventListener('media-started-playing', () => {
     mediaTimeStart = Date.now();
   });

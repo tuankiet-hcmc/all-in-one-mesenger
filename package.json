@@ -1,6 +1,6 @@
 {
   "name": "all-in-one",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "description": "A minimal Electron application",
   "main": "src/index.js",
   "scripts": {
@@ -17,8 +17,8 @@
   "author": "GitHub",
   "license": "CC0-1.0",
   "devDependencies": {
-    "@electron-forge/cli": "^6.0.0-beta.65",
-    "electron": "^20.0.1",
+    "@electron-forge/cli": "^6.2.1",
+    "electron": "^25.1.1",
     "electron-builder": "^23.3.3",
     "electron-reload": "^2.0.0-alpha.1",
     "electron-reloader": "^1.2.3"
@@ -28,8 +28,9 @@
     "electron-modal-window": "^1.0.0",
     "electron-store": "^8.1.0",
     "electron-tabs": "^1.0.1",
-    "jquery": "^3.6.2",
+    "jquery": "^3.7.0",
     "node-notifier": "^10.0.1",
-    "open": "^8.4.0"
+    "open": "^8.4.2",
+    "update-electron-app": "^2.0.1"
   }
 }

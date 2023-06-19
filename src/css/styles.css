@@ -17,6 +17,7 @@ body {
   background: #e7eaed;
   color: #696a6c;
   cursor: pointer;
+  
 }
 
 /* Darker background on mouse-over */
@@ -33,6 +34,7 @@ body {
   height: 40px;
   justify-content: center;
   align-items: center;
+  -webkit-app-region: no-drag;
 }
 
 /* The Modal (background) */
