@@ -37,6 +37,22 @@ body {
   -webkit-app-region: no-drag;
 }
 
+.btn-tabs-manager {
+  position: absolute;
+  top: 0;
+  right: 40px;
+  display: flex;
+  width: 40px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  -webkit-app-region: no-drag;
+}
+
+.btn-tabs-manager > i {
+  font-size: 18px;
+}
+
 /* The Modal (background) */
 .modal iframe {
   width: 100%;

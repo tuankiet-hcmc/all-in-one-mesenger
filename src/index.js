@@ -8,23 +8,13 @@ const Store = require("electron-store");
 
 const store = new Store();
 
-systemPreferences.askForMediaAccess('camera').then(success => {
-  console.log('You have successfully access camera')
-}).catch(err => {
-  console.log(err)
-})
-
-systemPreferences.askForMediaAccess('microphone').then(success => {
-  console.log('You have successfully access microphone')
-}).catch(err => {
-  console.log(err)
-})
-
 function createWindow() {
-  // Create the browser window.
+  // Create the browser window with Chat Tabs Manager UI
   const mainWindow = new BrowserWindow({
-    width: 1200,
-    height: 1200,
+    width: 1440,
+    height: 900,
+    minWidth: 1200,
+    minHeight: 700,
     titleBarStyle: "hiddenInset",
     webPreferences: {
       contextIsolation: true,
@@ -34,11 +24,14 @@ function createWindow() {
     }
   });
 
-  // and load the index.html of the app.
-  mainWindow.loadFile("index.html");
+  // Load the Chat Tabs Manager as the main UI
+  mainWindow.loadFile(path.join(__dirname, "page/chatTabs/index.html"));
 
-  // Open the DevTools.
-  // mainWindow.webContents.openDevTools();
+  // Open the DevTools in development
+  if (process.env.NODE_ENV === 'development') {
+    mainWindow.webContents.openDevTools();
+  }
+  
   const ses = mainWindow.webContents.session
   ses.setPermissionRequestHandler((webContents, permission, callback) => {
     callback(true)
@@ -163,4 +156,12 @@ ipcMain.on("addNewTab", (event, title, url, partition) => {
 
 ipcMain.on("deleteTab", (event, id) => {
   store.delete(`tabs.${id}`);
+});
+
+ipcMain.on("updateTab", (event, data) => {
+  const { id, title, url, partition } = data;
+  const existingTab = store.get(`tabs.${id}`);
+  if (existingTab) {
+    store.set(`tabs.${id}`, { ...existingTab, title, url });
+  }
 });

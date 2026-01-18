@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All-in-One Chat</title>
+  <link rel="stylesheet" href="index.css">
+  <meta
+    http-equiv="Content-Security-Policy"
+    content="default-src 'self' https://fonts.googleapis.com; script-src 'self'; style-src 'self' 'unsafe-inline' *; img-src 'self' data: https:; font-src *; connect-src https:; frame-src https:;"
+  />
+</head>
+<body>
+  <div class="app-container">
+    <!-- Left Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="4" y="4" width="24" height="24" rx="6" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M11 16h10M11 12h6M11 20h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <h1 class="app-title">All-in-One Chat</h1>
+      </div>
+      
+      <div class="tabs-list-header">
+        <h3>Your Chats</h3>
+        <button class="btn-icon-small" id="addTabBtn" title="Add new chat">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="tabs-list" id="sidebarTabsList">
+        <!-- Sidebar tabs will be inserted here -->
+      </div>
+
+      <div class="sidebar-footer">
+        <button class="nav-item" id="manageTabsBtn">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M10 7v3l2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <span>Manage Tabs</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content - Chat Tabs Display -->
+    <main class="main-content" id="mainContent">
+      <!-- Tab Group for displaying chats -->
+      <tab-group id="chatTabGroup">
+        <style>
+          .nav {
+            display: none !important;
+          }
+          .views {
+            height: 100vh !important;
+          }
+        </style>
+      </tab-group>
+
+      <!-- Management View -->
+      <div class="management-view" id="managementView" style="display: none;">
+        <div class="content-header">
+          <div>
+            <h2 class="page-title">Manage Chat Tabs</h2>
+            <p class="page-subtitle">Configure your chat application tabs and sessions</p>
+          </div>
+          <button class="btn btn-secondary" id="backToChatsBtn">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Back to Chats
+          </button>
+        </div>
+
+        <div class="card">
+          <div class="card-body">
+            <div class="table-container">
+              <table class="table" id="tabsTable">
+                <thead>
+                  <tr>
+                    <th>Title</th>
+                    <th>URL</th>
+                    <th>Partition</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="tabsTableBody">
+                  <!-- Tabs will be dynamically inserted here -->
+                </tbody>
+              </table>
+              
+              <div class="empty-state" id="emptyState">
+                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="12" y="12" width="40" height="40" rx="8" stroke="currentColor" stroke-width="2"/>
+                  <path d="M32 24v16M24 32h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <h3>No chat tabs yet</h3>
+                <p>Get started by adding your first chat application tab</p>
+                <button class="btn btn-primary" id="addFirstTabBtnManagement">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                  Add Your First Tab
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Empty state for when no tabs are active -->
+      <div class="chat-empty-state" id="chatEmptyState">
+        <svg width="96" height="96" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="18" y="18" width="60" height="60" rx="12" stroke="currentColor" stroke-width="2"/>
+          <path d="M36 48h24M36 36h18M36 60h20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <h3>Welcome to All-in-One Chat</h3>
+        <p>Add your favorite chat applications to get started</p>
+        <button class="btn btn-primary" id="addFirstTabBtn">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          Add Chat Application
+        </button>
+      </div>
+    </main>
+  </div>
+
+  <!-- Side Panel for Add/Edit Tab -->
+  <div class="side-panel" id="sidePanel">
+    <div class="side-panel-overlay" id="sidePanelOverlay"></div>
+    <div class="side-panel-content">
+      <div class="side-panel-header">
+        <h3 id="panelTitle">Add Chat Tab</h3>
+        <button class="btn-close" id="closePanelBtn">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 5l10 10M15 5l-10 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="side-panel-body">
+        <form id="tabForm">
+          <div class="form-group">
+            <label for="tabTitle" class="form-label">
+              Title
+              <span class="required">*</span>
+            </label>
+            <input 
+              type="text" 
+              id="tabTitle" 
+              class="form-input" 
+              placeholder="e.g., WhatsApp, Telegram, Slack"
+              required
+            />
+            <span class="form-error" id="titleError">Title is required</span>
+          </div>
+
+          <div class="form-group">
+            <label for="tabUrl" class="form-label">
+              URL
+              <span class="required">*</span>
+            </label>
+            <input 
+              type="url" 
+              id="tabUrl" 
+              class="form-input" 
+              placeholder="https://web.whatsapp.com"
+              required
+            />
+            <span class="form-error" id="urlError">Please enter a valid HTTPS URL</span>
+          </div>
+
+          <div class="form-group">
+            <label for="tabPartition" class="form-label">
+              Partition
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-lock">
+                <rect x="3" y="6" width="8" height="6" rx="1" stroke="currentColor" stroke-width="1.2"/>
+                <path d="M5 6V4a2 2 0 114 0v2" stroke="currentColor" stroke-width="1.2"/>
+              </svg>
+            </label>
+            <div class="input-group">
+              <input 
+                type="text" 
+                id="tabPartition" 
+                class="form-input input-mono" 
+                readonly
+                value="persist:..."
+              />
+              <button type="button" class="btn-icon" id="copyPartitionBtn" title="Copy to clipboard">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="5" y="5" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+                  <path d="M3 11V4a1 1 0 011-1h7" stroke="currentColor" stroke-width="1.5"/>
+                </svg>
+              </button>
+            </div>
+            <span class="form-helper" id="partitionHelper">Auto-generated to isolate session. Cannot be edited.</span>
+            <div class="info-note" id="editNote" style="display: none;">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M8 11V8M8 5h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+              <span>Partition is fixed to preserve existing login/session.</span>
+            </div>
+          </div>
+
+          <input type="hidden" id="tabId" value="">
+        </form>
+      </div>
+
+      <div class="side-panel-footer">
+        <button type="button" class="btn btn-secondary" id="cancelBtn">Cancel</button>
+        <button type="submit" class="btn btn-primary" id="saveBtn" form="tabForm">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 8l3 3 7-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Save Tab
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Context Menu -->
+  <div class="context-menu" id="contextMenu">
+    <button class="context-menu-item" data-action="edit">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M11 2l3 3-8 8H3v-3l8-8z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+      </svg>
+      Edit
+    </button>
+    <button class="context-menu-item context-menu-danger" data-action="delete">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 4h10M5 4V3a1 1 0 011-1h4a1 1 0 011 1v1M13 4v9a1 1 0 01-1 1H4a1 1 0 01-1-1V4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      Delete
+    </button>
+  </div>
+
+  <script src="../../../libs/electron-tabs/electron-tabs.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>

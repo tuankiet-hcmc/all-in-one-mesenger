@@ -63,7 +63,15 @@ var modal = document.getElementById("settingModal");
 // Get the button that opens the modal
 var btn = document.getElementById("settingBtn");
 
+// Get the tabs manager button
+var tabsManagerBtn = document.getElementById("tabsManagerBtn");
+
 // When the user clicks on the button, open the modal
 btn.onclick = function() {
   modal.style.display = "block";
+}
+
+// When the user clicks on the tabs manager button, open the manager window
+tabsManagerBtn.onclick = function() {
+  window.api.openTabsManager();
 }
